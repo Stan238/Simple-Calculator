@@ -94,15 +94,16 @@ struct ContentView: View {
             Spacer()
         }
         .padding()
+        .background(.gold)
     }
 
 }
     // Button style
-//  1. For number
+    //  1. For number
 struct numberButton: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+            .font(.largeTitle)
             .frame(width: 70, height: 70)
             .padding(4)
             .background(.lightOrange)
@@ -112,11 +113,11 @@ struct numberButton: ButtonStyle {
             .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
     }
 }
-// 2. For Arithmetick
+    // 2. For Arithmetick
 struct arithmeticButton: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+            .font(.largeTitle)
             .frame(width: 70, height: 70)
             .padding(4)
             .background(.gray)
@@ -126,19 +127,19 @@ struct arithmeticButton: ButtonStyle {
             .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
     }
 }
-//    3. For spacial
+    //    3. For spacial
 struct spetialButton: ButtonStyle {
-        func makeBody(configuration: Configuration) -> some View {
-            configuration.label
-                .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                .frame(width: 70, height: 70)
-                .padding(4)
-                .background(.brown)
-                .foregroundStyle(.black)
-                .clipShape(RoundedRectangle(cornerRadius: 4.0))
-                .scaleEffect(configuration.isPressed ? 1.2 : 1)
-                .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
-        }
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .font(.largeTitle)
+            .frame(width: 70, height: 70)
+            .padding(4)
+            .background(.brown)
+            .foregroundStyle(.black)
+            .clipShape(RoundedRectangle(cornerRadius: 4.0))
+            .scaleEffect(configuration.isPressed ? 1.2 : 1)
+            .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
+    }
 }
 
 
