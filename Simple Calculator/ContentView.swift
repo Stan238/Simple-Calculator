@@ -19,7 +19,12 @@ struct ContentView: View {
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 .background(.black)
             Spacer()
-
+            HStack {
+                Button("%"){}.buttonStyle(spetialButton())
+                Button("+ / -"){}.buttonStyle(spetialButton())
+                Button("AC"){}.buttonStyle(spetialButton())
+                Button("M"){}.buttonStyle(spetialButton())
+            }
             HStack {
                 VStack(alignment:.leading) {
                     HStack {
@@ -80,10 +85,10 @@ struct ContentView: View {
                     }
                 }
                 VStack{
-                    Button("+"){}.buttonStyle(signButton())
-                    Button("-"){}.buttonStyle(signButton())
-                    Button("*"){}.buttonStyle(signButton())
-                    Button("/"){}.buttonStyle(signButton())
+                    Button("+"){}.buttonStyle(arithmeticButton())
+                    Button("-"){}.buttonStyle(arithmeticButton())
+                    Button("*"){}.buttonStyle(arithmeticButton())
+                    Button("/"){}.buttonStyle(arithmeticButton())
                 }
             }
             Spacer()
@@ -108,7 +113,7 @@ struct numberButton: ButtonStyle {
     }
 }
 // 2. For Arithmetick
-struct signButton: ButtonStyle {
+struct arithmeticButton: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
@@ -121,6 +126,22 @@ struct signButton: ButtonStyle {
             .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
     }
 }
+//    3. For spacial
+struct spetialButton: ButtonStyle {
+        func makeBody(configuration: Configuration) -> some View {
+            configuration.label
+                .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                .frame(width: 70, height: 70)
+                .padding(4)
+                .background(.brown)
+                .foregroundStyle(.black)
+                .clipShape(RoundedRectangle(cornerRadius: 4.0))
+                .scaleEffect(configuration.isPressed ? 1.2 : 1)
+                .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
+        }
+}
+
+
 #Preview {
     ContentView()
 }
