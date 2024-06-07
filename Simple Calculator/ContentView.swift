@@ -18,86 +18,113 @@ struct ContentView: View {
                 .padding()
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 .background(.black)
-
+            
             Spacer()
             HStack {
-                Button("%"){}.buttonStyle(spetialButton())
-                Button("+ / -"){}.buttonStyle(spetialButton())
-                Button("AC"){}.buttonStyle(spetialButton())
-                Button("M"){}.buttonStyle(spetialButton())
+                Button("%"){}
+                Button("+ / -"){}
+                Button("AC"){}
+                Button("!"){}
             }
+            .buttonStyle(spetialButton())
             HStack {
-                VStack(alignment:.leading) {
-                    HStack {
+                Grid(alignment: .center) {
+                    var number = "0"
+                    let zero = "0"
+                    GridRow {
                         Button("1") {
-                            shownValue = "1"
+                            number = "1"
+                            if shownValue != zero {
+                                shownValue += number
+                            } else {shownValue = number}
                         }
-                        .buttonStyle(numberButton())
                         Button("2") {
-                            shownValue = "2"
+                            number = "2"
+                            if shownValue != zero {
+                                shownValue += number
+                            } else {shownValue = number}
                         }
-                        .buttonStyle(numberButton())
                         Button("3") {
-                            shownValue = "3"
+                            number = "3"
+                            if shownValue != zero {
+                                shownValue += number
+                            } else {shownValue = number}
                         }
-                        .buttonStyle(numberButton())
                     }
-                    HStack {
+                    GridRow {
                         Button("4") {
-                            shownValue = "4"
+                            number = "4"
+                            if shownValue != zero {
+                                shownValue += number
+                            } else {shownValue = number}
                         }
-                        .buttonStyle(numberButton())
+                        
                         Button("5") {
-                            shownValue = "5"
+                            number = "5"
+                            if shownValue != zero {
+                                shownValue += number
+                            } else {shownValue = number}
                         }
-                        .buttonStyle(numberButton())
+                        
                         Button("6") {
-                            shownValue = "6"
+                            number = "6"
+                            if shownValue != zero {
+                                shownValue += number
+                            } else {shownValue = number}
                         }
-                        .buttonStyle(numberButton())
                     }
-                    HStack {
+                    GridRow {
                         Button("7") {
-                            shownValue = "7"
+                            number = "7"
+                            if shownValue != zero {
+                                shownValue += number
+                            } else {shownValue = number}
                         }
-                        .buttonStyle(numberButton())
                         Button("8") {
-                            shownValue = "8"
+                            number = "8"
+                            if shownValue != zero {
+                                shownValue += number
+                            } else {shownValue = number}
                         }
-                        .buttonStyle(numberButton())
                         Button("9") {
-                            shownValue = "9"
+                            number = "9"
+                            if shownValue != zero {
+                                shownValue += number
+                            } else {shownValue = number}
                         }
-                        .buttonStyle(numberButton())
                     }
-                    HStack {
+                    GridRow {
                         Button("0") {
-                            shownValue = "0"
+                            number = "0"
+                            if shownValue != zero {
+                                shownValue += number
+                            }
                         }
-                        .buttonStyle(numberButton())
+                        
                         Button(".") {
-                            shownValue = "0"
+                            shownValue += "."
                         }
-                        .buttonStyle(numberButton())
+                        
                         Button("=") {
                             shownValue = "0"
                         }
-                        .buttonStyle(numberButton())
                     }
                 }
+                .buttonStyle(numberButton())
                 VStack{
-                    Button("+"){}.buttonStyle(arithmeticButton())
-                    Button("-"){}.buttonStyle(arithmeticButton())
-                    Button("*"){}.buttonStyle(arithmeticButton())
-                    Button("/"){}.buttonStyle(arithmeticButton())
+                    Button("+"){}
+                    Button("-"){}
+                    Button("*"){}
+                    Button("/"){}
                 }
+                .buttonStyle(arithmeticButton())
             }
             Spacer()
         }
         .padding()
         .background(.gold)
     }
-
+    
 }
     // Button style
     //  1. For number
@@ -109,7 +136,7 @@ struct numberButton: ButtonStyle {
             .padding(4)
             .background(.lightOrange)
             .foregroundStyle(.black)
-            .clipShape(RoundedRectangle(cornerRadius: 4.0))
+            .clipShape(RoundedRectangle(cornerRadius: 40.0))
             .shadow(color: .gray, radius: 2, x: 2, y: 2)
             .scaleEffect(configuration.isPressed ? 1.2 : 1)
             .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
@@ -124,7 +151,7 @@ struct arithmeticButton: ButtonStyle {
             .padding(4)
             .background(.gray)
             .foregroundStyle(.black)
-            .clipShape(RoundedRectangle(cornerRadius: 4.0))
+            .clipShape(RoundedRectangle(cornerRadius: 40.0))
             .shadow(color: .gray, radius: 2, x: 2, y: 2)
             .scaleEffect(configuration.isPressed ? 1.2 : 1)
             .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
@@ -139,7 +166,7 @@ struct spetialButton: ButtonStyle {
             .padding(4)
             .background(.brown)
             .foregroundStyle(.black)
-            .clipShape(RoundedRectangle(cornerRadius: 4.0))
+            .clipShape(RoundedRectangle(cornerRadius: 40.0))
             .shadow(color: .gray, radius: 2, x: 2, y: 2)
             .scaleEffect(configuration.isPressed ? 1.2 : 1)
             .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
