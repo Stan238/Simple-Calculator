@@ -16,98 +16,34 @@ struct ContentView: View {
                 .font(.largeTitle)
                 .foregroundStyle(.green)
                 .padding()
-                .frame(maxWidth: .infinity, alignment: .trailing)
+                .frame(maxWidth: 700, alignment: .trailing)
                 .background(.black)
-            
+
             Spacer()
             HStack {
-                Button("%"){}
+                Button(" "){}
                 Button("+ / -"){}
                 Button("AC"){}
                 Button("!"){}
             }
+            .padding()
             .buttonStyle(spetialButton())
-            HStack {
-                Grid(alignment: .center) {
-                    var number = "0"
+            HStack(alignment: .center) {
+                LazyVGrid(columns:Array(repeating: GridItem(.fixed(100)), count: 3) ){
                     let zero = "0"
-                    GridRow {
-                        Button("1") {
-                            number = "1"
+                    let number1: [String] = [ "1", "2","3", "4", "5", "6" , "7", "8" , "9", "0" ]
+                    ForEach(number1.indices, id: \.self) { index in
+                        Button(number1[index]) {
                             if shownValue != zero {
-                                shownValue += number
-                            } else {shownValue = number}
-                        }
-                        Button("2") {
-                            number = "2"
-                            if shownValue != zero {
-                                shownValue += number
-                            } else {shownValue = number}
-                        }
-                        Button("3") {
-                            number = "3"
-                            if shownValue != zero {
-                                shownValue += number
-                            } else {shownValue = number}
+                                shownValue += number1[index]
+                            } else {shownValue = number1[index]}
                         }
                     }
-                    GridRow {
-                        Button("4") {
-                            number = "4"
-                            if shownValue != zero {
-                                shownValue += number
-                            } else {shownValue = number}
-                        }
-                        
-                        Button("5") {
-                            number = "5"
-                            if shownValue != zero {
-                                shownValue += number
-                            } else {shownValue = number}
-                        }
-                        
-                        Button("6") {
-                            number = "6"
-                            if shownValue != zero {
-                                shownValue += number
-                            } else {shownValue = number}
-                        }
+                    Button(".") {
+                        shownValue += "."
                     }
-                    GridRow {
-                        Button("7") {
-                            number = "7"
-                            if shownValue != zero {
-                                shownValue += number
-                            } else {shownValue = number}
-                        }
-                        Button("8") {
-                            number = "8"
-                            if shownValue != zero {
-                                shownValue += number
-                            } else {shownValue = number}
-                        }
-                        Button("9") {
-                            number = "9"
-                            if shownValue != zero {
-                                shownValue += number
-                            } else {shownValue = number}
-                        }
-                    }
-                    GridRow {
-                        Button("0") {
-                            number = "0"
-                            if shownValue != zero {
-                                shownValue += number
-                            }
-                        }
-                        
-                        Button(".") {
-                            shownValue += "."
-                        }
-                        
-                        Button("=") {
-                            shownValue = "0"
-                        }
+                    Button("=") {
+                        shownValue = "0"
                     }
                 }
                 .buttonStyle(numberButton())
@@ -117,14 +53,15 @@ struct ContentView: View {
                     Button("*"){}
                     Button("/"){}
                 }
+                .padding()
                 .buttonStyle(arithmeticButton())
             }
+            .padding()
             Spacer()
         }
-        .padding()
         .background(.gold)
     }
-    
+
 }
     // Button style
     //  1. For number
@@ -133,7 +70,7 @@ struct numberButton: ButtonStyle {
         configuration.label
             .font(.largeTitle)
             .frame(width: 70, height: 70)
-            .padding(4)
+            .padding()
             .background(.lightOrange)
             .foregroundStyle(.black)
             .clipShape(RoundedRectangle(cornerRadius: 40.0))
@@ -148,7 +85,7 @@ struct arithmeticButton: ButtonStyle {
         configuration.label
             .font(.largeTitle)
             .frame(width: 70, height: 70)
-            .padding(4)
+            .padding()
             .background(.gray)
             .foregroundStyle(.black)
             .clipShape(RoundedRectangle(cornerRadius: 40.0))
@@ -163,7 +100,7 @@ struct spetialButton: ButtonStyle {
         configuration.label
             .font(.largeTitle)
             .frame(width: 70, height: 70)
-            .padding(4)
+            .padding()
             .background(.brown)
             .foregroundStyle(.black)
             .clipShape(RoundedRectangle(cornerRadius: 40.0))
