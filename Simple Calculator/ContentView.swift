@@ -16,7 +16,7 @@ struct ContentView: View {
         VStack {
             Spacer()
             Text(shownValue)
-                .font(.largeTitle)
+                .font(.system(size: 60))
                 .foregroundStyle(.green)
                 .padding()
                 .frame(maxWidth: 440, alignment: .trailing)
@@ -38,9 +38,10 @@ struct ContentView: View {
                     let number1: [String] = [ "1", "2","3", "4", "5", "6" , "7", "8" , "9", "0" ]
                     ForEach(number1.indices, id: \.self) { index in
                         Button(number1[index]) {
-                            if shownValue != zero {
-                                shownValue += number1[index]
-                            } else {shownValue = number1[index]}
+                            if mathSign != "" {
+                                shownValue = "0"
+                            }
+                            shownValue = (shownValue != zero ? shownValue + number1[index]: number1[index] )
                         }
                     }
                     Button(".") {
@@ -86,7 +87,7 @@ struct numberButton: ButtonStyle {
             .background(.lightOrange)
             .foregroundStyle(.black)
             .clipShape(RoundedRectangle(cornerRadius: 20.0))
-            //            .shadow(color: .gray, radius: 2, x: 2, y: 2)
+            //  .shadow(color: .gray, radius: 2, x: 2, y: 2)
             .scaleEffect(configuration.isPressed ? 1.2 : 1)
             .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
     }
