@@ -51,7 +51,8 @@ struct ContentView: View {
                                 checkFlag = false
                             }
                             shownValue = (shownValue != zero ? shownValue + number1[index]: number1[index] )
-                            shownValue2 = (firstNumber != zero ? shownValue2 + number1[index] : shownValue)
+// Xcode has failed because variables in the condition of the "if... else" statement had different data types.
+                            shownValue2 = (firstNumber != 0 ? shownValue2 + number1[index]: shownValue)
                         }
                     }
                     Button(".") {
