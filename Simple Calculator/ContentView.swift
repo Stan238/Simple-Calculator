@@ -9,14 +9,22 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var shownValue : String = "0"
+    @State private var shownValue2 : String = "0"
     @State private var firstNumber : Double = 0
     @State private var secondNumber : Double = 0
     @State private var mathSign: String = ""
+    @State private var checkFlag: Bool = false
     var body: some View {
         VStack {
             Spacer()
             Text(shownValue)
                 .font(.system(size: 60))
+                .foregroundStyle(.green)
+                .padding()
+                .frame(maxWidth: 440, alignment: .trailing)
+                .background(.black)
+            Text(shownValue2)
+                .font(.system(size: 20))
                 .foregroundStyle(.green)
                 .padding()
                 .frame(maxWidth: 440, alignment: .trailing)
@@ -38,19 +46,36 @@ struct ContentView: View {
                     let number1: [String] = [ "1", "2","3", "4", "5", "6" , "7", "8" , "9", "0" ]
                     ForEach(number1.indices, id: \.self) { index in
                         Button(number1[index]) {
-                            if mathSign != "" {
+                            if (mathSign != "") && checkFlag {
                                 shownValue = "0"
+                                checkFlag = false
                             }
                             shownValue = (shownValue != zero ? shownValue + number1[index]: number1[index] )
+                            shownValue2 = (firstNumber != zero ? shownValue2 + number1[index] : shownValue)
                         }
                     }
                     Button(".") {
+//  Checking for the ability to add "." just one time
                         if !shownValue.contains(Character(".")) {
                             shownValue += "."
+                            shownValue2 = shownValue
                         }
                     }
                     Button("=") {
-                        shownValue = "0"
+                        switch mathSign {
+                            case "+" :
+                                shownValue = String(firstNumber + (Double(shownValue) ?? 0))
+                            case "*" :
+                                shownValue = String(firstNumber * (Double(shownValue) ?? 0))
+                            case "-" :
+                                shownValue = String(firstNumber - (Double(shownValue) ?? 0))
+                            case "/" :
+                                shownValue = String(firstNumber / (Double(shownValue) ?? 0))
+                            default:
+                                firstNumber = Double(shownValue) ?? 0
+                                checkFlag = true
+                        }
+                        mathSign = " "
                     }
                 }
                 .buttonStyle(numberButton())
@@ -61,6 +86,9 @@ struct ContentView: View {
                         Button(arithmSign[index]){
                             firstNumber = Double(shownValue) ?? 0
                             mathSign = arithmSign[index]
+                            checkFlag = true
+                            shownValue2 += mathSign
+
                         }
                     }
                 }
