@@ -179,7 +179,7 @@ struct arithmeticButton: ButtonStyle {
             .background(.gray)
             .foregroundStyle(.black)
             .clipShape(RoundedRectangle(cornerRadius: 20.0))
-            //            .shadow(color: .gray, radius: 2, x: 2, y: 2)
+            .shadow(color: .gray, radius: 5, x: 5, y: 5)
             .scaleEffect(configuration.isPressed ? 1.2 : 1)
             .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
     }
