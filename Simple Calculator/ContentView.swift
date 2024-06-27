@@ -145,7 +145,7 @@ struct ContentView: View {
 
         }
         .frame(alignment: .center)
-        .background(Color.white)
+        .background(Color.lightGray)
         .clipShape(RoundedRectangle(cornerRadius: 20.0))
         .padding()
         .background(.gray)
@@ -164,7 +164,7 @@ struct numberButton: ButtonStyle {
             .background(.lightOrange)
             .foregroundStyle(.black)
             .clipShape(RoundedRectangle(cornerRadius: 25.0))
-            //  .shadow(color: .gray, radius: 2, x: 2, y: 2)
+            .shadow(color: .gray, radius: 6)
             .scaleEffect(configuration.isPressed ? 1.2 : 1)
             .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
     }
@@ -179,7 +179,7 @@ struct arithmeticButton: ButtonStyle {
             .background(.gray)
             .foregroundStyle(.black)
             .clipShape(RoundedRectangle(cornerRadius: 20.0))
-            .shadow(color: .gray, radius: 5, x: 5, y: 5)
+            .shadow(color: .gray, radius: 6)
             .scaleEffect(configuration.isPressed ? 1.2 : 1)
             .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
     }
@@ -194,7 +194,7 @@ struct spetialButton: ButtonStyle {
             .background(.brown)
             .foregroundStyle(.black)
             .clipShape(RoundedRectangle(cornerRadius: 20.0))
-            //            .shadow(color: .gray, radius: 2, x: 2, y: 2)
+            .shadow(color: .gray, radius: 6)
             .scaleEffect(configuration.isPressed ? 1.2 : 1)
             .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
     }
